@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="jumbotron mt-3">
+        <h1>Usuarios http request (API Rest full)</h1>
+        <hr>
+        <hr>
+        <!-- sirve para dar formato a la informacion que provee la api -->
+        <!-- <pre>{{ usuarios | json }}</pre> -->
+
+        <!-- iterar usuarios -->
+        <button class="btn btn-success m-3" (click)="obtenerUsuarios()">GET</button>
+        <button class="btn btn-success m-3" (click)="enviarUsuarios()">POST</button>
+        <hr>
+        <!-- <div *ngIf="cargando; else userOk">
+            <div class="alert alert-warning">
+                <h2>Obteniendo usuario...</h2>
+            </div>
+        </div> -->
+        <!-- <ng-template #userOk>             -->
+            <div class="media my-3" *ngFor="let usuario of usuarios">
+                <img [src]="usuario.foto" height="80" alt="foto de {{ usuario.nombre }}">
+                <div class="media-body ml-3">                
+                    <p><b>{{ usuario.nombre }}</b></p>
+                    <p><i>{{ usuario.descripcion }}</i></p>
+                    <button class="btn btn-danger m-3" (click)="borrarUsuarios(usuario.id)">DELETE</button>
+                    <button class="btn btn-warning m-3" (click)="actualizarUsuarios(usuario.id)">PUT</button>
+                    <hr>
+                </div>
+            </div>
+        <!-- </ng-template> -->
+    </div>    
+</div>

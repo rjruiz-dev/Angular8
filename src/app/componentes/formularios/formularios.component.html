@@ -1,0 +1,118 @@
+<div class="jumbotron mt-3">
+    <h2>Componente Formularios</h2>
+    <hr>
+    <hr>
+    <br>
+
+    <!--Form con ngModel -->
+    <!--ngModel permite un doble binding con el value de un input, desde el elemento de entrada input hacia el campo particular del obj formulario  y viceversa-->
+    <h4><u>Form Template Driven</u></h4>
+
+        <form action="">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text" class="form-control" name="nombre" [(ngModel)]="formu.nombre">
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input id="apellido" type="text" class="form-control" name="apellido" [(ngModel)]="formu.apellido">
+            </div>
+
+            <div class="form-group">
+                <label for="edad">Edad</label>
+                <input id="edad" type="number" class="form-control" name="edad" [(ngModel)]="formu.edad">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control" name="email" [(ngModel)]="formu.email">
+            </div>
+
+            <div class="form-group">
+                <label for="clave">Clave</label>
+                <input id="clave" type="password" class="form-control" name="clave" [(ngModel)]="formu.clave">
+            </div>
+
+            <div class="form-group">
+                <label for="notas">Notas</label>
+                <textarea id="notas" cols="30" rows="10" type="password" class="form-control" name="notas" [(ngModel)]="formu.notas"></textarea>
+            </div>
+
+            <button class="btn btn-success my-3" (click)="enviar()">Enviar</button>
+        </form>
+    <hr>
+
+    <!-- Form Reactive no utiliza ngModel, o lo usa de una manera interna -->
+    <h4><u>Reactive Form</u></h4>
+        <!-- se vincula el formulario con la directiva [formGroup] -->
+        <form [formGroup]="f" autocomplete="off">
+            <div class="form-group">
+                <label for="nombre-reactive">Nombre</label>
+                <input id="nombre-reactive" type="text" class="form-control" formControlName="nombre">
+            </div>
+
+            <!-- --------------------------------------------------- -->
+            <!--            Mensaje de error de validación           -->
+            <!-- --------------------------------------------------- -->
+            <!-- f.controls.nombre.dirty: es un estado para el campo nombre para saber si ha sido tipado o no -->
+            <div *ngIf="f.controls.nombre.errors && f.controls.nombre.dirty" class="alert alert-danger">
+                <div *ngIf="f.controls.nombre.errors.required">Este campo es requerido</div>
+                <!-- <div *ngIf="f.controls.nombre.errors.minlength">No se ha alcanzado la cantidad mínima de caracteres ({{ f.controls.nombre.errors.minlength.requiredLength }})</div> -->
+                <!-- a traves de un metodo declarado en la clase formularios.component.ts se consigue el mismo funcionamiento -->
+                <div *ngIf="f.controls.nombre.errors.minlength">No se ha alcanzado la cantidad mínima de caracteres ({{  getCantidadMin() }}). Se han escrito {{ getCantidadActualMin() }} caracteres</div>
+                <div *ngIf="f.controls.nombre.errors.maxlength">Se ha superado la cantidad máxima de caracteres ({{ getCantidadMax() }}). Se han escrito {{ getCantidadActualMax() }} caracteres</div> 
+                <!-- <div *ngIf="f.controls.nombre.errors.conEspacios">No se permiten espacios intermedios</div> -->
+                <div *ngIf="f.controls.nombre.errors.conEspacios">No se permiten caracteres no válidos</div>
+            </div>
+            <!-- ---------------------------------------------- -->
+           
+            <div class="form-group">
+                <label for="apellido-reactive">Apellido</label>
+                <input id="apellido-reactive" type="text" class="form-control" formControlName="apellido">
+            </div>
+
+            <div class="form-group">
+                <label for="edad-reactive">Edad</label>
+                <input id="edad-reactive" type="number" class="form-control" formControlName="edad">
+            </div>
+
+            <!-- envolver los campos que se desean validar en conjunto con formGroupName="contacto" indicando la clave -->
+            <div formGroupName="contacto">
+                <div class="form-group">
+                    <label for="email-reactive">Email</label>
+                    <input id="email-reactive" type="email" class="form-control" formControlName="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono-reactive">Teléfono</label>
+                    <input id="telefono-reactive" type="telefono" class="form-control" formControlName="telefono">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="clave-reactive">Clave</label>
+                <input id="clave-reactive" type="password" class="form-control" formControlName="clave">
+            </div>
+
+            <div class="form-group">
+                <label for="notas-reactive">Notas</label>
+                <textarea id="notas-reactive" cols="30" rows="10" type="password" class="form-control" formControlName="notas"></textarea>
+            </div>
+
+            <button class="btn btn-success my-3" [disabled]="!f.valid" (click)="enviar()">Enviar</button>
+        </form>
+
+        <hr>
+        <p><u>Errores del campo nombre del formulario Reactivo</u></p>
+        <!-- {{ f.value }} tiene los datos del formulario reactivo -->
+        <!-- al objeto le asigna formato json -->
+        <pre>{{ f.controls.nombre.errors | json }}</pre>
+        <hr>
+
+        <p><u>Datos del formulario Reactivo</u></p>
+        <!-- {{ f.value }} tiene los datos del formulario reactivo -->
+        <!-- al objeto le asigna formato json -->
+        <pre>{{ f.value | json }}</pre>
+</div>
+

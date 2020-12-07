@@ -1,0 +1,14 @@
+<div class="jumbotron mt-3">
+    <h2>Componente Clientes</h2>
+    <hr>
+        <h4><u>Listado de Clientes (desde el servicio)</u></h4>
+        <ul>
+            <input type="text" [(ngModel)]="nombre">
+            <button class="btn btn-primary m-2" (click)="agregarCliente(nombre)">Agregar Cliente</button>
+            <!-- lista desordenadas de clientes -->
+            <li *ngFor="let cliente of clientes">
+                {{ cliente }}
+            </li>
+        </ul>
+    <hr>
+</div>
