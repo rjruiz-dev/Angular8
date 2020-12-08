@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IUsuario, UsuariosService } from 'src/app/servicios/usuarios.service';
+// Permite tomar los paramteros q vienen de la vista
+import { ActivatedRoute } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-usuarios',
@@ -11,8 +14,14 @@ export class UsuariosComponent implements OnInit {
   // con el IUsuario[] se indica el tipo de datos
   usuarios : IUsuario[]=[]
   cargando : boolean = false
-  
-  constructor(public usuarioService : UsuariosService) { }
+  idGrupousuarios : string
+ 
+  constructor(public usuarioService : UsuariosService, activatedRoute : ActivatedRoute) { 
+    activatedRoute.params.subscribe(
+      params => { this.idGrupousuarios = params['idgrupousuarios'];
+
+      })
+  }
 
   ngOnInit(){
     this.obtenerUsuarios();

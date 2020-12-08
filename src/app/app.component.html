@@ -2,7 +2,54 @@
   <div class="jumbotron mt-3">
     <h1>Componente Principal</h1>
     <br>
-    <app-usuarios></app-usuarios>
+
+    
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" routerLink="/">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/entradas" routerLinkActive="active">Entrada</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/estructura" routerLinkActive="active">Estructura</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/atributos" routerLinkActive="active">Atributos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/formularios" routerLinkActive="active">Formularios</a>
+          </li>     
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/servicios" routerLinkActive="active">Servicios</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/http/oficina" routerLinkActive="active">HTTP1</a>
+          </li>   
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/http/facultad" routerLinkActive="active">HTTP2</a>
+          </li>   
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/http/club" routerLinkActive="active">HTTP3</a>
+          </li>    
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/modulo" routerLinkActive="active">Modulo</a>
+          </li>          
+        </ul>       
+      </div>
+    </nav>
+    <div class="my-3"></div>
+      <!-- etiqueta de posicion para los componentes -->
+      <router-outlet></router-outlet>
+
+    
+
+    <!-- <app-usuarios></app-usuarios> -->
    
     <!-- <app-entradas></app-entradas>
     <app-clientes></app-clientes>
